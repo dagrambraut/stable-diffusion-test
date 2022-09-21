@@ -309,7 +309,7 @@ def main():
                             for x_sample in x_checked_image_torch:
                                 x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
                                 img = Image.fromarray(x_sample.astype(np.uint8))
-                                img.save(os.path.join(sample_path, f"{base_count:05}-{get_random_string(8)}.png"))
+                                img.save(os.path.join(sample_path, f"{opt.prompt}-seed-{opt.seed}-{get_random_string(8)}.png"))
                                 base_count += 1
 
                         if not opt.skip_grid:
@@ -324,7 +324,7 @@ def main():
                     # to image
                     grid = 255. * rearrange(grid, 'c h w -> h w c').cpu().numpy()
                     img = Image.fromarray(grid.astype(np.uint8))
-                    img.save(os.path.join(outpath, f'grid-{grid_count:04}-{get_random_string(8)}.png'))
+                    img.save(os.path.join(outpath, f'{opt.prompt}-seed-{opt.seed}-{get_random_string(8)}.png'))
                     grid_count += 1
 
                 toc = time.time()
